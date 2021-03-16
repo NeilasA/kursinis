@@ -1,0 +1,23 @@
+{% extends 'core/base.html' %}
+
+{% block content%}
+   <h1 class="title">{{ job.title }}</h1>
+
+    <p class="is-size-4" > {{ job.short_description }}</p>
+
+    <p> {{ job.long_description }}</p>
+
+    <b>Company name: </b>{{ job.company_name}}<br>
+    {% if job.company_address %}<b>Company address: </b>{{ job.company_address}}<br>{% endif %}
+    {% if job.company_city %}<b>Company city: </b>{{ job.company_city}}<br>{% endif %}
+    {% if job.company_country %}<b>Company country: </b>{{ job.company_country}}<br>{% endif %}
+    {% if job.company_amoun %}<b>Asked amount: </b>{{ job.company_amount}}<br>{% endif %}
+    
+    {% if userprofile.is_investor %}
+        
+            <a href="{% url 'apply_to_invest' job.id %}" class="button is-success">I want to Invest</a>
+        
+        
+    {% endif %}
+    
+{%endblock%}

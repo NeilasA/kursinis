@@ -1,0 +1,37 @@
+{% extends 'core/base.html' %}
+
+{% block content%}
+
+    <h1 class="title">Dashboard</h1>
+
+    {% if userprofile.is_investor %}
+        <h2 >List of where I want to Invest:</h2>
+        {% for application in request.user.applications.all %}
+
+        <div class="application">
+            <a href="{% url 'view_application' application.id %}">{{ application.job.title }}</a>
+        </div>
+        {% empty %}
+
+        <p>You haven't invest</p>
+
+        {% endfor %}
+        
+
+    {% else %}
+        <h2 class="subtitle">Projects!</h2>
+
+        <a href="{% url 'add_job' %}" class="button is-success">Add Project</a>
+
+        {% for job in request.user.jobs.all %}
+            <div class="job">
+                <br>
+               <a href="{% url 'view_dashboard_projects' job.id%}"> {{ job.title }} ({{job.get_status_display}})</a>
+            </div>
+        {% empty %}
+            <p>You don't have any projects</p>
+        {% endfor %}
+
+    {% endif %}
+
+{%endblock%}

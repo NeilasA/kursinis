@@ -1,0 +1,38 @@
+{% extends 'core/base.html' %}
+
+{% block content%}
+   <h1 class="title">Invest - {{job.title}}</h1>
+
+    <form method="post" action=".">
+        {% csrf_token %}
+
+        {% if form.errors %}
+            {% for error in form.errors %}
+                <div>
+                    {{ error }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+
+        <div class="field">
+            <label >Contact info</label>
+            <div class="control">
+                <input class="textarea" name="content" id="id_content">
+            </div>
+        </div>
+
+        <div class="field">
+            <label >Why you want to invest:</label>
+            <div class="control">
+                <input class="textarea" name="experience" id="id_experience">
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="control">
+                <button class="button is-success">Submit</button>
+            </div>
+        </div>
+    </form>
+{%endblock%}
